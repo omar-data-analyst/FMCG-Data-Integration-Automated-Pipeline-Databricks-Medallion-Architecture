@@ -15,6 +15,11 @@
 ![Medallion Architecture](https://img.shields.io/badge/Architecture-Medallion-emerald?style=for-the-badge)
 
 ---
+## My Account on Linked In:
+![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)
+
+https://www.linkedin.com/in/omar-hussein-analyst-663019400
+---
 
 ## 📜 Project Overview
 
@@ -109,7 +114,31 @@ The codebase is organized into modular PySpark notebooks designed for parameteri
 
 ### Installation & Execution Steps
 
-1. **Clone the Repository:**
-   ```bash
-   git clone [https://github.com/your-username/fmcg-databricks-medallion-pipeline.git](https://github.com/your-username/fmcg-databricks-medallion-pipeline.git)
-   cd fmcg-databricks-medallion-pipeline
+1- **Upload Data to Databricks Storage:**
+Upload the extracted .csv files (customers.csv, products.csv, gross_price.csv, and orders/ directory) into your Databricks Unity Catalog Volume or DBFS path (e.g., /Volumes/fmcg/default/landing/).
+
+2- **Execute Pipelines:**
+Run the notebooks in sequential order as defined in the task workflow:
+
+```
+1) 0_Setup\
+      ├── dim_date_table_creation.ipynb
+      └── Setup_Catalogs.ipynb
+    
+2) 1_chilled_customers_processing.py
+
+3) 2_products_data_processing.py
+
+4) 3_gross_price_data_processing.py
+
+5) full_load_fact_sales_processing.py / Incremental_load_fact_sales_data_processing.py
+
+6) 6_create_vw_fact_orders_enriched.sql
+
+```
+
+3- **For Trying Genie Agent:**
+
+- In the Databricks sidebar, go to the "SQL" section and select "Genie Agent".
+
+- Click `+ New` and in the selection window, navigate to `fmcg` -> `gold` -> `vw_fact_orders_enriched`.
